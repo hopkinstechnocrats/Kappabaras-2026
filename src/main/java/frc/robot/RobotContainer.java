@@ -59,8 +59,6 @@ public class RobotContainer {
     operatorController.a().whileTrue(MotorCommands.spin(motorSubsystem)); //added for the example
     
   }
-   
-  
 
   public DriveSubsystem getDriveSubsystem() {
     return driveSubsystem;

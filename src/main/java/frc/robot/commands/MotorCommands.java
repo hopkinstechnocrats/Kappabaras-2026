@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Constants;
 import frc.robot.subsystems.MotorSubsystem;
 
-public class MotorCommands {
+public class MotorCommands extends Command {
 
     public static Command spin(MotorSubsystem speed){
 
             return Commands.run(() -> {
 
                 speed.go(Constants.motorPercentPower);
-                
+
             }, speed);
         }
 }
