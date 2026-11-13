@@ -4,14 +4,15 @@
 
 package frc.robot;
 
-
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;// Aded for the example, needed for correctly calling buttons
+import frc.robot.subsystems.DriveSubsystem; //added for the example
+import frc.robot.subsystems.MotorSubsystem; //added for the example
+import frc.robot.commands.MotorCommands; //added for the example
 
 
 /**
@@ -22,16 +23,19 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+  private final DriveSubsystem driveSubsystem = new DriveSubsystem(); //added for the example
 
-  private final XboxController driveController = new XboxController(Constants.driverXboxControllerPort);
+  private final MotorSubsystem motorSubsystem = new MotorSubsystem(); //added for the example
+
+  CommandXboxController operatorController = new CommandXboxController(Constants.operatorXboxControllerPort); //added for the example
   
-  private final XboxController operatorController = new XboxController(Constants.operatorXboxControllerPort);
+  CommandXboxController driveController = new CommandXboxController(Constants.driverXboxControllerPort); //added for the example
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
     driveSubsystem.setDefaultCommand(
             new RunCommand(
                     () -> {
@@ -51,10 +55,8 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton aButton = new JoystickButton(operatorController, 1);
-    JoystickButton bButton = new JoystickButton(operatorController, 2);
-    JoystickButton aDriverButton = new JoystickButton(driveController, 1);
-    JoystickButton bDriverButton = new JoystickButton(driveController, 2);
+
+    operatorController.a().whileTrue(MotorCommands.spin(motorSubsystem)); //added for the example
     
   }
    
