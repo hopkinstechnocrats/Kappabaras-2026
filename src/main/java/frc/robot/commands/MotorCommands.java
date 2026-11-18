@@ -14,4 +14,11 @@ public class MotorCommands {
                 
             }, speed);
         }
+    public static Command brake(MotorSubsystem motorSubsystem){
+        
+            return Commands.run(() -> {
+
+                motorSubsystem.brake();
+            }, motorSubsystem);
+    }
 }

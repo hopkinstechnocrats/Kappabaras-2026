@@ -15,4 +15,8 @@ public class MotorSubsystem extends SubsystemBase{
     public void go(double power){
         motorExample.set(power);
     }
+
+    public void brake(){
+        motorExample.set(Constants.testMotorBrakeSpeed);
+    }
 }

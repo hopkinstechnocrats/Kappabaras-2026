@@ -28,5 +28,6 @@ public final class Constants {
     */
     public static final double maxMotorOutput = 0.7;
     public static int testMotorCANID = 3;
-    public static double motorPercentPower = 1;
+    public static double motorPercentPower = 0.25;
+    public static int testMotorBrakeSpeed = 0;
 }
