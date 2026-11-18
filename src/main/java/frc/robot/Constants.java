@@ -1,32 +1,39 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
- *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
- */
-public final class Constants {
-    // The CAN ID is the device ID of each of the motors
-    public static final int rightLeaderCANID = 7;
-    public static final int rightFollowerCANID = 4;
-    public static final int leftLeaderCANID = 11;
-    public static final int leftFollowerCANID = 5;
-    //The controller ports can be changed in driverstation
-    public static final int driverXboxControllerPort = 0;
-    public static final int operatorXboxControllerPort = 1;
+public final class Constants{
 
-    /* 
-    Sets the maximum power we can drive at. 1.0 is 100%. 
-    The number is negative because xbox controllers are down-right positve
-    */
-    public static final double maxMotorOutput = 0.7;
+    //in this file, youll notice that all of the variable names start with a k
+    //it specifies it as a constant value so other programmers can better understand what the constant is quicker
+    public static final class SensorConstants{
+        public static final int kPhotoSensorPort = 1; //should be set to the number of the DIO port the sensor is connected to
+        public static final int kLimitSwitchPort = 1; //should be set to the analog input port on the roboRIO
+    }
 
-public static final double kMotorSpeed =.45;
+    public static final class SubsystemConstants{
+        public static final int kOperatorControllerPort = 1;//the port in the driver station for the operator controller
+
+        //the CAN IDs for various devices
+        public static final int kKrakenExampleCANID = 17;
+        public static final int kKrakenFollowerExampleCANID = 4;
+    
+        //MY NEW CODE
+        public static final int driverXboxControllerPort = 1;
+        public static final int operatorXboxControllerPort = 1;
+        public static final int maxMotorOutput = 1;
+        public static final int leftLeaderCANID = 1;
+        public static final int leftFollowerCANID = 1;
+        public static final int rightLeaderCANID = 1;
+        public static final int rightFollowerCANID =1;
+
+         public static final double kExampleDouble = 1.0;
+        public static final double kMotorSpeed = 0.1;
+        public static double kMotorVelocityRPS = 1;
+        public static final double kMotorPosition = 1;
+        public static final double kMotorPosition2 = 5;
+        public static final double kMotorVelocityRPS2 = .05;// (5/100). here, the 5 is the goal rps. Kraken x60 motors have a max speed of 100 rps
+        //we put the goal rps over the max to tell the motor a percent power to run! you also need to account for gear ratios if applicable
+        public static double k_exampleValueToBeTuned = 1;
+    }
+
+
 }

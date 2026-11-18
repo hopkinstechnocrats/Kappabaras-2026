@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.*;
@@ -27,10 +27,10 @@ public class DriveSubsystem extends SubsystemBase {
   // DriveSubsystem contains all the code for what we want our DriveSubsystem to be
   public DriveSubsystem() {
     // Create the motors in code
-    leftLeader = new WPI_TalonSRX(Constants.leftLeaderCANID);
-    leftFollower = new WPI_TalonSRX(Constants.leftFollowerCANID);
-    rightLeader = new WPI_TalonSRX(Constants.rightLeaderCANID);
-    rightFollower = new WPI_TalonSRX(Constants.rightFollowerCANID);
+    leftLeader = new WPI_TalonSRX(Constants.SubsystemConstants.leftLeaderCANID);
+    leftFollower = new WPI_TalonSRX(Constants.SubsystemConstants.leftFollowerCANID);
+    rightLeader = new WPI_TalonSRX(Constants.SubsystemConstants.rightLeaderCANID);
+    rightFollower = new WPI_TalonSRX(Constants.SubsystemConstants.rightFollowerCANID);
     
     // Set motors to default settings
     leftLeader.configFactoryDefault();

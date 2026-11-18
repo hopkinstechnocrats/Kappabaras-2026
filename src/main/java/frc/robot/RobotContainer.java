@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import frc.robot.commands.MotorExampleCommands;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -24,9 +24,9 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
-  private final XboxController driveController = new XboxController(Constants.driverXboxControllerPort);
+  private final XboxController driveController = new XboxController(SubsystemConstants.driverXboxControllerPort);
   
-  private final XboxController operatorController = new XboxController(Constants.operatorXboxControllerPort);
+  private final XboxController operatorController = new XboxController(SubsystemConstants.operatorXboxControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -35,8 +35,8 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(
             new RunCommand(
                     () -> {
-                      driveSubsystem.drive(Constants.maxMotorOutput*driveController.getLeftY(),
-                      Constants.maxMotorOutput*driveController.getRightY());
+                      driveSubsystem.drive(SubsystemConstants.maxMotorOutput*driveController.getLeftY(),
+                      Constants.SubsystemConstants.maxMotorOutput*driveController.getRightY());
                     }
             , driveSubsystem)
     );
@@ -51,11 +51,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    JoystickButton aButton = new JoystickButton(operatorController, 1);
-    JoystickButton bButton = new JoystickButton(operatorController, 2);
-    JoystickButton aDriverButton = new JoystickButton(driveController, 1);
-    JoystickButton bDriverButton = new JoystickButton(driveController, 2);
-    
+  
+    operatorController.a().whileTrue(MotorExampleCommands.SpinMotorPercentSpeedCommand(MotorExamplesSubsystem));
+     
+
   }
    
   
