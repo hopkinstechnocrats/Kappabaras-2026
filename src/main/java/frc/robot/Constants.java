@@ -13,7 +13,7 @@ public final class Constants{
         public static final int kOperatorControllerPort = 1;//the port in the driver station for the operator controller
 
         //the CAN IDs for various devices
-        public static final int kKrakenExampleCANID = 17;
+        public static final int kKrakenExampleCANID = 3;
         public static final int kKrakenFollowerExampleCANID = 4;
     
         //MY NEW CODE

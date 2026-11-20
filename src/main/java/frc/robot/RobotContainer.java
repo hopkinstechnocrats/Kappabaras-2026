@@ -9,8 +9,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.MotorExamplesSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.MotorExampleCommands;
 
@@ -24,9 +27,11 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
-  private final XboxController driveController = new XboxController(SubsystemConstants.driverXboxControllerPort);
+  private final MotorExamplesSubsystem motorExamplesSubsystem = new MotorExamplesSubsystem();
+
+  private final XboxController driveController = new XboxController(Constants.SubsystemConstants.driverXboxControllerPort);
   
-  private final XboxController operatorController = new XboxController(SubsystemConstants.operatorXboxControllerPort);
+  private final CommandXboxController operatorController = new CommandXboxController(Constants.SubsystemConstants.operatorXboxControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -35,7 +40,7 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(
             new RunCommand(
                     () -> {
-                      driveSubsystem.drive(SubsystemConstants.maxMotorOutput*driveController.getLeftY(),
+                      driveSubsystem.drive(Constants.SubsystemConstants.maxMotorOutput*driveController.getLeftY(),
                       Constants.SubsystemConstants.maxMotorOutput*driveController.getRightY());
                     }
             , driveSubsystem)
@@ -51,13 +56,12 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-  
-    operatorController.a().whileTrue(MotorExampleCommands.SpinMotorPercentSpeedCommand(MotorExamplesSubsystem));
-     
 
+    operatorController.a().whileTrue(MotorExampleCommands.SpinMotorPercentSpeedCommand(motorExamplesSubsystem, 0.5));
+    
   }
    
-  
+
 
   public DriveSubsystem getDriveSubsystem() {
     return driveSubsystem;

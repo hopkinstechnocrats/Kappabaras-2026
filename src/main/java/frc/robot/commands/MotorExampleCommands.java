@@ -16,9 +16,10 @@ public class MotorExampleCommands extends Command {
     Then, outside of the curly brackets, it specifies which subsystem to pull from in the function in the command.
     Now, we have a command that we can run in RobotContainer!
 */
-        public static Command SpinMotorPercentSpeedCommand(MotorExamplesSubsystem speed){
+        public static Command SpinMotorPercentSpeedCommand(MotorExamplesSubsystem motorSubsytem, double speed){
             return Commands.run(() -> {
-                speed.SpinMotorPercentSpeed(Constants.SubsystemConstants.kMotorSpeed);
-            }, speed);
+                motorSubsytem.SpinMotorPercentSpeed(speed);
+            }, motorSubsytem);
         }
+    }       
         
