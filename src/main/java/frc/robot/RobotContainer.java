@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.MotorSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveSubsystem driveSubsystem = new DriveSubsystem();
+
+  private final MotorSubsystem motorSubsystem = new MotorSubsystem();
 
   CommandXboxController driveController = new CommandXboxController(Constants.driverXboxControllerPort);
   
@@ -40,8 +42,13 @@ public class RobotContainer {
                     }
             , driveSubsystem)
     );
-  
-    
+    motorSubsystem.setDefaultCommand(
+            new RunCommand(
+                    () -> {
+                      motorSubsystem.brake();
+                    }
+            , motorSubsystem)
+    );
   }
 
   /**
@@ -52,7 +59,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    operatorController.a()/*.whileTrue(CommandFile.CommandName(SubsystemObject))*/;
+     operatorController.a().whileTrue(MotorCommands.armUp(armSubsystem));
     //to use this button binding, take the comment markers out of the line of code, (these being the /* and */), and replace the example names
   }
    
